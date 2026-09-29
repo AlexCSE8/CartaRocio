@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f1eb">
+<title>Para Rocío ❤️</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#f7f1eb;
+  color:#4a3e37;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+section{
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px 20px;
+}
+.cover{
+  text-align:center;
+  position:relative;
+  background:#f7f1eb;
+}
+.cover-content{
+  width:min(680px,100%);
+  animation:entrance 1.2s ease both;
+}
+.eyebrow{
+  font-size:11px;
+  letter-spacing:3px;
+  color:#9b8375;
+  margin-bottom:25px;
+}
+.cover h1{
+  margin:0;
+  font-size:clamp(62px,16vw,92px);
+  font-weight:400;
+  letter-spacing:-3px;
+  color:#403731;
+}
+.rose{
+  font-size:39px;
+  line-height:1;
+  margin:18px 0 30px;
+  filter:saturate(.85);
+  animation:roseIn 1.4s ease both .25s;
+}
+.btn{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:30px;
+  background:#463b35;
+  color:#fff;
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:.5px;
+  transition:transform .25s ease, box-shadow .25s ease;
+  box-shadow:0 8px 20px rgba(70,59,53,.12);
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 25px rgba(70,59,53,.18);
+}
+.dot{
+  position:absolute;
+  width:6px;height:6px;border-radius:50%;
+  background:#d8cbc1;
+}
+.dot.one{top:7%;right:13%}
+.dot.two{bottom:5%;left:18%}
+
+.letter-section{
+  background:#eee6df;
+  padding:55px 18px;
+  scroll-margin-top:0;
+}
+.paper{
+  width:min(720px,100%);
+  background:#fffdf9;
+  border:1px solid #e8ddd5;
+  padding:clamp(28px,6vw,60px);
+  box-shadow:0 20px 60px rgba(70,50,40,.11);
+  animation:paperIn 1s ease both;
+}
+.paper .eyebrow{text-align:center;margin-bottom:10px}
+.paper h2{
+  font-family:Georgia,"Times New Roman",serif;
+  text-align:center;
+  font-weight:400;
+  font-size:clamp(42px,10vw,62px);
+  margin:0 0 38px;
+  color:#443832;
+}
+.paper p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(19px,4vw,23px);
+  line-height:1.72;
+  margin:0 0 25px;
+}
+.signature{
+  margin-top:40px;
+  text-align:right;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:21px;
+  line-height:1.65;
+  color:#5f5048;
+}
+.end{
+  background:#f7f1eb;
+  text-align:center;
+}
+.end-content{
+  max-width:620px;
+  animation:entrance 1.1s ease both;
+}
+.end .rose{
+  font-size:38px;
+  margin-bottom:20px;
+  animation:roseIn 1.2s ease both;
+}
+.end h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(45px,11vw,68px);
+  font-weight:400;
+  margin:18px 0;
+}
+.end p{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:23px;
+  line-height:1.55;
+  margin:0 auto 30px;
+}
+.small-note{
+  margin-top:25px;
+  font-size:10px;
+  letter-spacing:2px;
+  color:#a38d80;
+}
+@keyframes entrance{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:none}
+}
+@keyframes paperIn{
+  from{opacity:0;transform:translateY(28px) scale(.985)}
+  to{opacity:1;transform:none}
+}
+@keyframes roseIn{
+  from{opacity:0;transform:translateY(10px) scale(.8)}
+  to{opacity:1;transform:none}
+}
+@keyframes pulse{
+  50%{transform:scale(1.1)}
+}
+@media(max-width:520px){
+  .letter-section{padding:35px 14px}
+  .paper{padding:28px 22px}
+  .paper p{font-size:19px;line-height:1.65}
+}
+@media(prefers-reduced-motion:reduce){
+  *,html{animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+
+<section class="cover" id="inicio">
+  <span class="dot one"></span>
+  <span class="dot two"></span>
+
+  <div class="cover-content">
+    <div class="eyebrow">UNA CARTA PARA TI</div>
+    <h1>Rocío</h1>
+    <div class="rose" aria-label="rosa">🌹</div>
+    <a class="btn" href="#carta">ABRIR CARTA 💗</a>
+  </div>
+</section>
+
+<section class="letter-section" id="carta">
+  <article class="paper">
+    <div class="eyebrow">ESCRITA DE MADRUGADA</div>
+    <h2>Para ti</h2>
+
+    <p>Te escribo esta carta un día en la madrugada, donde uno se inspira por la mujer que quiere y porque nunca está de más decirle que es la mujer más linda, valiente e inteligente que existe.</p>
+
+    <p>En estos casi 6 meses, los cuales se han pasado volando, me he dado cuenta de que mi vida hoy tiene más sentido que nunca. Contigo quiero volar y estar en la nube más alta; volar bajo, nunca más.</p>
+
+    <p>Sé lo difícil que puede ser volver a creer en alguien, pero tú sabes y has visto mis intenciones en mis ojos. Tú sabes lo mucho que quiero quererte, aunque a veces salgo con mis cosas o mis fallas. Sabes que es por torpeza, mas no por hacerte enojar o hacerte daño. Mi amor para ti es genuino y real.</p>
+
+    <p>En la actualidad, mi vida tiene un propósito, el cual se ha multiplicado por ti, y es ser mejor hombre cada día para quererte como corresponde. Hacerte feliz es uno de mis deseos más anhelados, y también manejar mejor para que no estés asustada, jaja.</p>
+
+    <div class="signature">
+      Sin mucho más que decir y más por demostrar,<br><br>
+      con cariño,<br>
+      <strong>Alex “el inculto”</strong>
+    </div>
+  </article>
+</section>
+
+<section class="end">
+  <div class="end-content">
+    <div class="rose">🌹</div>
+    <h2>Nos quedan muchas<br>historias por vivir.</h2>
+    <p>Y espero que esta sea apenas una de las muchas páginas que escribamos juntos.</p>
+    <div class="small-note">Alex</div>
+  </div>
+</section>
+
+</body>
+</html>
