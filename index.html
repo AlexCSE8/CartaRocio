@@ -91,6 +91,8 @@ body.transitioning .letter-section{
   z-index:20;
   background:rgba(238,230,223,.96);
   overflow-y:auto;
+  align-items:flex-start;
+  justify-content:center;
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -328,7 +330,13 @@ document.addEventListener('keydown', (event) => {
 const music=document.getElementById('bgMusic');
 const control=document.getElementById('musicControl');
 const open=document.querySelector('.open-letter');
-if(open) open.addEventListener('click',()=>{document.body.classList.add('letter-open'); music.play().catch(()=>{});});
+if(open) open.addEventListener('click',()=>{
+  const letter=document.getElementById('carta');
+  letter.scrollTop=0;
+  document.body.classList.add('letter-open');
+  requestAnimationFrame(()=>{ letter.scrollTop=0; });
+  music.play().catch(()=>{});
+});
 control.addEventListener('click',()=>{
   if(music.paused){music.play().catch(()=>{});control.textContent='🔊';}
   else{music.pause();control.textContent='🔇';}
