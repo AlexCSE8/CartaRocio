@@ -23,6 +23,16 @@ section{
   padding:30px 20px;
 }
 .cover{
+  transition:opacity .75s ease, transform .9s ease;
+}
+body.transitioning .cover{
+  opacity:0;
+  transform:scale(1.035);
+  pointer-events:none;
+}
+body.transitioning .letter-section{
+  animation:letterReveal 1.1s ease both;
+}
   text-align:center;
   position:relative;
   background:#f7f1eb;
@@ -76,10 +86,46 @@ section{
 .dot.two{bottom:5%;left:18%}
 
 .letter-section{
-  background:#eee6df;
+  position:fixed;
+  inset:0;
+  z-index:20;
+  background:rgba(238,230,223,.96);
+  overflow-y:auto;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:scale(.97);
+  transition:opacity .45s ease, transform .45s ease, visibility 0s linear .45s;
   padding:55px 18px;
   scroll-margin-top:0;
 }
+body.letter-open .letter-section{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:scale(1);
+  transition:opacity .45s ease, transform .45s ease, visibility 0s;
+}
+body.letter-open .cover{
+  opacity:0;
+  transform:scale(.985);
+  pointer-events:none;
+}
+.close-letter{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:30;
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:#463b35;
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+}
+body.letter-open{overflow:hidden;}
 .paper{
   width:min(720px,100%);
   background:#fffdf9;
@@ -110,6 +156,35 @@ section{
   font-size:21px;
   line-height:1.65;
   color:#5f5048;
+}
+.letter-ending{
+  margin-top:70px;
+  padding-top:45px;
+  border-top:1px solid #eadfd6;
+  text-align:center;
+}
+.letter-ending .rose{
+  font-size:32px;
+  margin-bottom:18px;
+}
+.letter-ending h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(30px,7vw,45px);
+  font-weight:400;
+  line-height:1.15;
+  margin:0 auto 20px;
+  color:#443832;
+}
+.letter-ending p{
+  max-width:560px;
+  margin:0 auto 25px;
+  font-size:clamp(18px,3.8vw,21px);
+  line-height:1.6;
+}
+.ending-name{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+  color:#6a574d;
 }
 .end{
   background:#f7f1eb;
@@ -154,6 +229,10 @@ section{
   from{opacity:0;transform:translateY(10px) scale(.8)}
   to{opacity:1;transform:none}
 }
+@keyframes letterReveal{
+  from{opacity:0;transform:translateY(45px)}
+  to{opacity:1;transform:translateY(0)}
+}
 @keyframes pulse{
   50%{transform:scale(1.1)}
 }
@@ -165,6 +244,14 @@ section{
 @media(prefers-reduced-motion:reduce){
   *,html{animation:none!important;scroll-behavior:auto!important}
 }
+
+.music-control{
+ position:fixed;right:18px;bottom:18px;z-index:50;
+ width:44px;height:44px;border:1px solid #d8cbc1;border-radius:50%;
+ background:rgba(255,253,249,.92);color:#463b35;font-size:18px;
+ cursor:pointer;box-shadow:0 6px 20px rgba(70,59,53,.12);
+}
+
 </style>
 </head>
 
@@ -178,11 +265,12 @@ section{
     <div class="eyebrow">UNA CARTA PARA TI</div>
     <h1>Rocío</h1>
     <div class="rose" aria-label="rosa">🌹</div>
-    <a class="btn" href="#carta">ABRIR CARTA 💗</a>
+    <button class="btn open-letter" type="button">ABRIR CARTA 💗</button>
   </div>
 </section>
 
 <section class="letter-section" id="carta">
+  <button class="close-letter" type="button" aria-label="Cerrar carta">×</button>
   <article class="paper">
     <div class="eyebrow">ESCRITA DE MADRUGADA</div>
     <h2>Para ti</h2>
@@ -200,17 +288,52 @@ section{
       con cariño,<br>
       <strong>Alex “el inculto”</strong>
     </div>
+    <div class="letter-ending">
+      <div class="rose">🌹</div>
+      <h3>Nos quedan muchas historias por vivir.</h3>
+      <p>Y espero que esta sea apenas una de las muchas páginas que pueda escribir para ti, Rocío Alexandra.</p>
+      <div class="ending-name">Alex</div>
+    </div>
   </article>
 </section>
 
-<section class="end">
-  <div class="end-content">
-    <div class="rose">🌹</div>
-    <h2>Nos quedan muchas<br>historias por vivir.</h2>
-    <p>Y espero que esta sea apenas una de las muchas páginas que escribamos juntos.</p>
-    <div class="small-note">Alex</div>
-  </div>
-</section>
+
+
+
+<script>
+const openButton = document.querySelector('.open-letter');
+const closeButton = document.querySelector('.close-letter');
+
+openButton.addEventListener('click', () => {
+  document.body.classList.add('letter-open');
+});
+
+closeButton.addEventListener('click', () => {
+  document.body.classList.remove('letter-open');
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    document.body.classList.remove('letter-open');
+  }
+});
+</script>
+
+
+<audio id="bgMusic" preload="auto" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+<button id="musicControl" class="music-control" type="button" aria-label="Pausar música">🔊</button>
+<script>
+const music=document.getElementById('bgMusic');
+const control=document.getElementById('musicControl');
+const open=document.querySelector('.open-letter');
+if(open) open.addEventListener('click',()=>{document.body.classList.add('letter-open'); music.play().catch(()=>{});});
+control.addEventListener('click',()=>{
+  if(music.paused){music.play().catch(()=>{});control.textContent='🔊';}
+  else{music.pause();control.textContent='🔇';}
+});
+</script>
 
 </body>
 </html>
